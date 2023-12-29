@@ -25,24 +25,29 @@ export default {
 
   methods: {
     getAllPosts() {
-      axios.get("http://localhost:8000/api/posts").then((res) => {
-        for (let i = 0; i < res.data.posts.length; i++) {
-          // if (res.data.post[i].image != null) {
-          //   res.data.posts[i].image =
-          //     "http://localhost:8000/postImage/" + res.data.posts[i].image;
-          // } else {
-          //   res.data.posts[i].image =
-          //     "http://localhost:8000/storage/default/default_image.jpg";
-          // }
+      axios
+        .get("http://localhost:8000/api/posts")
+        .then((res) => {
+          for (let i = 0; i < res.data.posts.length; i++) {
+            // if (res.data.post[i].image != null) {
+            //   res.data.posts[i].image =
+            //     "http://localhost:8000/postImage/" + res.data.posts[i].image;
+            // } else {
+            //   res.data.posts[i].image =
+            //     "http://localhost:8000/storage/default/default_image.jpg";
+            // }
 
-          res.data.posts[i].image =
-            "http://localhost:8000/postImage/" + res.data.posts[i].image;
-        }
-        this.date = res.data.posts[0].updated_at;
-        this.posts = res.data.posts;
-        console.log(this.posts);
-        console.log(this.date);
-      });
+            res.data.posts[i].image =
+              "http://localhost:8000/postImage/" + res.data.posts[i].image;
+          }
+          this.date = res.data.posts[0].updated_at;
+          this.posts = res.data.posts;
+          console.log(this.posts);
+          console.log(this.date);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     getAllCategories() {

@@ -73,8 +73,37 @@
     <main>
       <!-- Card Section -->
       <div class="container-fluid">
-        <div v-if="tokenStatus" class="row">
+        <div v-if="!tokenStatus">
+          <div class="alert alert-danger m-5" role="alert">
+            <h4 class="alert-heading">
+              <strong style="font-size: 30px"
+                >You Don't Have Permission To Read!</strong
+              >
+            </h4>
+            <p style="font-size: 20px">
+              You don't have permission to access this content. Log in to
+              explore our full range of features and content. Don't have an
+              account?
+              <router-link to="/registerPage">register</router-link>
+              now!
+            </p>
+            <hr />
+            <p style="font-size: 20px">
+              Unlock premium content and exclusive features by logging in to
+              your account.
+            </p>
+          </div>
+        </div>
+        <div v-else class="row">
           <div
+            class="mx-auto mt-5 d-flex align-items-center"
+            style="height: 100vh"
+            v-if="posts.length === 0"
+          >
+            <h1 class="text-danger">There is no data!</h1>
+          </div>
+          <div
+            v-else-if="posts.length != 0"
             v-for="(post, index) in this.posts"
             :key="index"
             class="col-md-4 mb-4"
@@ -100,27 +129,6 @@
                 </p>
               </div> -->
             </Router-Link>
-          </div>
-        </div>
-        <div v-else>
-          <div class="alert alert-danger m-5" role="alert">
-            <h4 class="alert-heading">
-              <strong style="font-size: 30px"
-                >You Don't Have Permission To Read!</strong
-              >
-            </h4>
-            <p style="font-size: 20px">
-              You don't have permission to access this content. Log in to
-              explore our full range of features and content. Don't have an
-              account?
-              <router-link to="/registerPage">register</router-link>
-              now!
-            </p>
-            <hr />
-            <p style="font-size: 20px">
-              Unlock premium content and exclusive features by logging in to
-              your account.
-            </p>
           </div>
         </div>
       </div>
